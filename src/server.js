@@ -4,6 +4,10 @@ import bodyParser from "body-parser";
 import auth from "./routes/auth";
 import mongoose from "mongoose";
 import User from "./models/User";
+import dotenv from "dotenv";
+
+dotenv.config();
+console.log(process.env.DB_NAME);
 
 const app = express();
 mongoose.connect(
@@ -24,21 +28,29 @@ app.use("/login", express.static(__dirname + path.join("/public/")));
 
 app.use("/auth", auth);
 
-//testing code for db
+//test code for db
 let user1 = new User({
-  email: 'user1@email.com',
-  passwordHash: '$2a$10$Lk8.Yk3raqotnqjnExOz2OD/kw4CSNTRMc6MDd/rk.aGlAUAOML4.'
-})
+  email: "user1@email.com",
+  passwordHash: "$2a$10$Lk8.Yk3raqotnqjnExOz2OD/kw4CSNTRMc6MDd/rk.aGlAUAOML4."
+});
 
-if (!User.findOne({ email: user1.email })) {
-  user1.save(err => {
-    if (err) throw err
-    console.log('user saved successfully.')
-  })
-}
+User.findOne({ email: user1.email }).then(user => {
+  if (!user) {
+    user1.save(err => {
+      if (err) {
+        throw err;
+      } else {
+        console.log("user saved succesfully");
+      }
+    });
+  }
+});
 
-app.get('/users', (req, res) => {
-  User.find({}, (err, users) => res.json({ users }))
-})
-
-app.listen(8081, _ => console.log("server running on 8081..." + __dirname));
+app.get("/users", (req, res) => {
+  User.find({}, (err, users) => {
+    console.log(users);
+    res.json({ users });
+  });
+});
+//end db test code
+app.listen(8083, _ => console.log("server running ..." + __dirname));

@@ -10,7 +10,7 @@ submitBtn.addEventListener("click", e => {
     "password": passwordInput.value.toString()
   }
   console.log(userCredentials)
-  fetch("http://localhost:8081/auth", {
+  fetch("http://localhost:8083/auth", {
     method: "post",
     headers: {
       "Content-Type": "application/json"
