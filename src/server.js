@@ -7,7 +7,6 @@ import User from "./models/User";
 import dotenv from "dotenv";
 
 dotenv.config();
-console.log(process.env.DB_NAME);
 
 const app = express();
 mongoose.connect(
@@ -46,11 +45,11 @@ app.use("/auth", auth);
 //   }
 // });
 
-// app.get("/users", (req, res) => {
-//   User.find({}, (err, users) => {
-//     console.log(users);
-//     res.json({ users });
-//   });
-// });
+app.get("/users", (req, res) => {
+  User.find({}, (err, users) => {
+    console.log(users);
+    res.json({ users });
+  });
+});
 //end db test code
 app.listen(8083, _ => console.log("server running ..." + __dirname));
