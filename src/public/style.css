@@ -1,16 +1,10 @@
-alert {
-  display: block;
-  padding: 20px;
-  border-left: 5px solid;
-}
-
 .alert-success {
   align-content: center;
   width: 50%;
   padding: 10px;
   background-color: #d5f5e3;
-  border-left-color: #2ecc71;
   color: #2ecc71;
+  animation: fade-in 0.5s;
 }
 
 .alert-error {
@@ -18,6 +12,15 @@ alert {
   width: 50%;
   padding: 10px;
   background-color: #f2d7d5;
-  border-left-color: #c0392b;
   color: #c0392b;
+  animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

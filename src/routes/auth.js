@@ -6,9 +6,15 @@ import jwt from "jsonwebtoken";
 const router = express.Router();
 
 router.post("/", (req, res) => {
+  if(!req.body.email){
+    res.json({error: "Email empty."})
+  }
+  if(!req.body.password){
+    res.json({error: "Password empty."})
+  }
   User.findOne({ email: req.body.email }).then(user => {
     if (!user) {
-      res.json({ error: "user not found" });
+      res.json({ error: "User not found or wrong email." });
     } else if (
       user &&
       bcrypt.compareSync(req.body.password, user.passwordHash)
