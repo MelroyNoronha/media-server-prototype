@@ -1,10 +1,10 @@
 import express from "express";
-import path from "path";
 import bodyParser from "body-parser";
 import auth from "./routes/auth";
 import mongoose from "mongoose";
 import User from "./models/User";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
@@ -22,9 +22,7 @@ mongoose.connect(
 );
 
 app.use(bodyParser.json());
-
-app.use("/login", express.static(__dirname + path.join("/public/")));
-
+app.use(cors());
 app.use("/auth", auth);
 
 //test code for db

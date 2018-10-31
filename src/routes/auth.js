@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 const router = express.Router();
 
 router.post("/", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   if(!req.body.email){
     res.json({error: "Email empty."})
   }

@@ -1,8 +1,8 @@
-const form = document.querySelector("#form");
-const emailInput = document.querySelector("#email-input");
-const passwordInput = document.querySelector("#password-input");
-const submitBtn = document.querySelector("#submit-btn");
-const alertDiv = document.querySelector("#alertDiv");
+const form = document.getElementById("form");
+const emailInput = document.getElementById("email-input");
+const passwordInput = document.getElementById("password-input");
+const submitBtn = document.getElementById("submit-btn");
+const alertDiv = document.getElementById("alertDiv");
 
 const renderErrorAlert = text => {
   text = text.toString();
