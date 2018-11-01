@@ -25,29 +25,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use("/auth", auth);
 
-//test code for db
-// let user1 = new User({
-//   email: "user1@email.com",
-//   passwordHash: "$2a$10$Lk8.Yk3raqotnqjnExOz2OD/kw4CSNTRMc6MDd/rk.aGlAUAOML4."
-// });
-
-// User.findOne({ email: user1.email }).then(user => {
-//   if (!user) {
-//     user1.save(err => {
-//       if (err) {
-//         throw err;
-//       } else {
-//         console.log("user saved succesfully");
-//       }
-//     });
-//   }
-// });
-
 app.get("/users", (req, res) => {
   User.find({}, (err, users) => {
-    console.log(users);
     res.json({ users });
   });
 });
-//end db test code
+
 app.listen(8083, _ => console.log("server running ..." + __dirname));

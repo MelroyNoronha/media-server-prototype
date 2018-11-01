@@ -22,11 +22,12 @@ const renderSuccessAlert = text => {
 
 submitBtn.addEventListener("click", e => {
   e.preventDefault();
+
   const userCredentials = {
     email: emailInput.value.toString(),
     password: passwordInput.value.toString()
   };
-  console.log(userCredentials);
+
   fetch("http://localhost:8083/auth", {
     method: "post",
     headers: {
