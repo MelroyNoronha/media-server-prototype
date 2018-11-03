@@ -1,5 +1,5 @@
 const form = document.getElementById("form");
-const usernameInput = document.getElementById("username-input");
+const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
 const confirmPasswordInput = document.getElementById("confirm-password-input");
 const submitBtn = document.getElementById("submit-btn");
@@ -26,9 +26,9 @@ const passwordsDoMatch = (password1, password2) =>
 
 let dataIsValidated = false;
 
-const doClientSideValidation = (username, password, confirmedPassword) => {
-  if (!username) {
-    renderErrMessage(`Username is empty.`);
+const doClientSideValidation = (email, password, confirmedPassword) => {
+  if (!email) {
+    renderErrMessage(`Email is empty.`);
   } else if (!password) {
     renderErrMessage(`Password is empty`);
   } else if (!confirmedPassword) {
@@ -37,21 +37,21 @@ const doClientSideValidation = (username, password, confirmedPassword) => {
     renderErrMessage(`Passwords don't match.`);
   }
 
-  if (username && password && confirmedPassword && passwordsDoMatch) {
+  if (email && password && confirmedPassword && passwordsDoMatch) {
     dataIsValidated = true;
   }
 };
 
 submitBtn.addEventListener("click", e => {
   e.preventDefault();
-  const username = usernameInput.value.toString();
+  const email = emailInput.value.toString();
   const password = passwordInput.value.toString();
   const confirmedPassword = confirmPasswordInput.value.toString();
 
-  doClientSideValidation(username, password, confirmedPassword);
+  doClientSideValidation(email, password, confirmedPassword);
   if (dataIsValidated) {
     let userCredentials = {
-      username: username,
+      email: email,
       password: password
     };
 
@@ -64,6 +64,7 @@ submitBtn.addEventListener("click", e => {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         if (data.error) {
           renderErrMessage(data.error);
         }
