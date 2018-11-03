@@ -21,24 +21,23 @@ const renderSuccessMessage = successMessage => {
     `;
 };
 
-const passwordsDoMatch = (password1, password2) =>
-  password1.toString() === password2.toString() ? true : false;
-
-let dataIsValidated = false;
+let dataIsValid = false;
 
 const doClientSideValidation = (email, password, confirmedPassword) => {
   if (!email) {
     renderErrMessage(`Email is empty.`);
+    dataIsValid = false;
   } else if (!password) {
     renderErrMessage(`Password is empty`);
+    dataIsValid = false;
   } else if (!confirmedPassword) {
     renderErrMessage(`Confirm your password`);
-  } else if (!passwordsDoMatch(password, confirmedPassword)) {
+    dataIsValid = false;
+  } else if (password.toString() !== confirmedPassword.toString()) {
     renderErrMessage(`Passwords don't match.`);
-  }
-
-  if (email && password && confirmedPassword && passwordsDoMatch) {
-    dataIsValidated = true;
+    dataIsValid = false;
+  } else {
+    dataIsValid = true;
   }
 };
 
@@ -49,7 +48,8 @@ submitBtn.addEventListener("click", e => {
   const confirmedPassword = confirmPasswordInput.value.toString();
 
   doClientSideValidation(email, password, confirmedPassword);
-  if (dataIsValidated) {
+
+  if (dataIsValid) {
     let userCredentials = {
       email: email,
       password: password
@@ -64,7 +64,6 @@ submitBtn.addEventListener("click", e => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.error) {
           renderErrMessage(data.error);
         }
