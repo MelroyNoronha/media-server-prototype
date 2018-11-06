@@ -21,6 +21,10 @@ const renderSuccessMessage = successMessage => {
     `;
 };
 
+const storeJwtInLocalStorage = token => {
+  localStorage.setItem("media-server-token", token.toString());
+};
+
 let dataIsValid = false;
 
 const doClientSideValidation = (email, password, confirmedPassword) => {
@@ -69,6 +73,7 @@ submitBtn.addEventListener("click", e => {
         }
         if (data.message) {
           renderSuccessMessage(data.message);
+          storeJwtInLocalStorage(data.token);
         }
       });
   }

@@ -2,6 +2,7 @@ import express from "express";
 import User from "../models/User";
 import bcrypt from "bcryptjs";
 import isEmail from "validator/lib/isEmail";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -32,9 +33,17 @@ router.post("/", (req, res) => {
           if (err) {
             throw err;
           } else {
+            let token = jwt.sign(
+              { email: req.body.email },
+              process.env.JWT_SECRET,
+              {
+                expiresIn: 3600
+              }
+            );
             res.json({
               message: "You have successfully created an account.",
-              registered: true
+              token: token,
+              loggedIn: true
             });
           }
         });

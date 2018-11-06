@@ -20,6 +20,10 @@ const renderSuccessAlert = text => {
     `;
 };
 
+const storeJwtInLocalStorage = token => {
+  localStorage.setItem("media-server-token", token.toString());
+};
+
 submitBtn.addEventListener("click", e => {
   e.preventDefault();
 
@@ -42,6 +46,7 @@ submitBtn.addEventListener("click", e => {
       }
       if (data.message) {
         renderSuccessAlert(data.message);
+        storeJwtInLocalStorage(data.token);
       }
     });
 });
