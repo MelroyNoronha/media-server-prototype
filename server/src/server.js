@@ -17,7 +17,7 @@ mongoose.connect(
     if (err) {
       throw err;
     } else {
-      console.log("mongodb connected. ");
+      console.log(`mongodb connected to ${process.env.DB_NAME} `);
     }
   }
 );
