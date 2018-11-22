@@ -1,0 +1,27 @@
+{
+  "name": "media-server-front-end",
+  "version": "1.0.0",
+  "description": "front-end for media server powered by raspberry pi",
+  "scripts": {
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelroyNoronha/media-server-prototype.git"
+  },
+  "author": "Melroy Noronha, Rohan Korde, Suhan Shriyan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MelroyNoronha/media-server-prototype/issues"
+  },
+  "homepage": "https://github.com/MelroyNoronha/media-server-prototype#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  }
+}

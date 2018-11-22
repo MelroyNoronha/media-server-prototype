@@ -1,44 +1,25 @@
-const form = document.getElementById("form");
+import { renderErrorMessage, renderSuccessMessage } from "./renderMessages";
+import storeJwtInLocalStorage from "./storeJwtInLocalStorage";
+
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
 const confirmPasswordInput = document.getElementById("confirm-password-input");
 const submitBtn = document.getElementById("submit-btn");
-const alertDiv = document.getElementById("alert-div");
-
-const renderErrMessage = errMessage => {
-  errMessage = errMessage.toString();
-  alertDiv.innerHTML = ``;
-  alertDiv.innerHTML = `
-      <p class="alert-error"><strong>Error:</strong> ${errMessage}</p>
-    `;
-};
-
-const renderSuccessMessage = successMessage => {
-  successMessage = successMessage.toString();
-  alertDiv.innerHTM = ``;
-  alertDiv.innerHTML = `
-      <p class="alert-success"><strong>Success:</strong> ${successMessage}</p>
-    `;
-};
-
-const storeJwtInLocalStorage = token => {
-  localStorage.setItem("media-server-token", token.toString());
-};
 
 let dataIsValid = false;
 
 const doClientSideValidation = (email, password, confirmedPassword) => {
   if (!email) {
-    renderErrMessage(`Email is empty.`);
+    renderErrorMessage(`Email is empty.`);
     dataIsValid = false;
   } else if (!password) {
-    renderErrMessage(`Password is empty`);
+    renderErrorMessage(`Password is empty`);
     dataIsValid = false;
   } else if (!confirmedPassword) {
-    renderErrMessage(`Confirm your password`);
+    renderErrorMessage(`Confirm your password`);
     dataIsValid = false;
   } else if (password.toString() !== confirmedPassword.toString()) {
-    renderErrMessage(`Passwords don't match.`);
+    renderErrorMessage(`Passwords don't match.`);
     dataIsValid = false;
   } else {
     dataIsValid = true;
@@ -69,7 +50,7 @@ submitBtn.addEventListener("click", e => {
       .then(res => res.json())
       .then(data => {
         if (data.error) {
-          renderErrMessage(data.error);
+          renderErrorMessage(data.error);
         }
         if (data.message) {
           renderSuccessMessage(data.message);

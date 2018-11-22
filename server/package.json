@@ -1,12 +1,16 @@
 {
-  "name": "client-server",
+  "name": "media-server-backend",
   "version": "1.0.0",
-  "description": "standard client-server application",
+  "description": "back-end for media server powered by raspberry pi",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node - src/server.js"
   },
-  "author": "Melroy Noronha",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelroyNoronha/media-server-prototype.git"
+  },
+  "author": "Melroy Noronha, Rohan Korde, Suhan Shriyan",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -20,7 +24,6 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^9.0.0",
     "babel-preset-env": "^1.7.0",
     "nodemon": "^1.18.5"
   }

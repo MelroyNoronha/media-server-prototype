@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+    />
+    <link rel="stylesheet" href="./styles/loginStyle.css" />
+    <link rel="stylesheet" href="./styles/alertStyle.css" />
+  </head>
+
+  <body>
+    <h1>Login</h1>
+
+    <div id="alertDiv"></div>
+
+    <form id="form" autocomplete="on">
+      <div id="email-div">
+        <label for="email">Email:</label>
+        <input id="email-input" type="email" name="email-input" required />
+      </div>
+
+      <div id="password-div">
+        <label for="password">Password:</label>
+        <input
+          id="password-input"
+          type="password"
+          name="password-input"
+          required
+        />
+      </div>
+
+      <button id="submit-btn" type="button">Submit</button>
+    </form>
+    <script src="../dist/loginScript.js"></script>
+  </body>
+</html>

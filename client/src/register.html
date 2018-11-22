@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Register</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./styles/registerStyle.css" />
+    <link rel="stylesheet" href="./styles/alertStyle.css" />
+  </head>
+
+  <body>
+    <h1>Register</h1>
+
+    <div id="alert-div"></div>
+
+    <form id="form" autocomplete="on">
+      <div id="email-div">
+        <label for="email">Enter your email</label>
+        <input id="email-input" type="email" required />
+      </div>
+
+      <div id="password-div">
+        <label for="password-input">Enter a secure password</label>
+        <input id="password-input" type="password" required />
+        <label for="confirm-password-input">Confirm password</label>
+        <input id="confirm-password-input" type="password" required />
+      </div>
+
+      <button id="submit-btn" type="button">Submit</button>
+    </form>
+    <script src="../dist/registerScript.js"></script>
+  </body>
+</html>

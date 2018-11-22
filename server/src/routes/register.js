@@ -47,6 +47,8 @@ router.post("/", (req, res) => {
             });
           }
         });
+      } else {
+        res.json({ error: "please enter a valid email address." });
       }
     }
   });
