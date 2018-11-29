@@ -26,8 +26,8 @@ submitBtn.addEventListener("click", e => {
         renderErrorMessage(data.error);
       }
       if (data.message) {
-        renderSuccessMessage(data.message);
         storeJwtInLocalStorage(data.token);
+        renderSuccessMessage(data.message);
       }
     });
 });

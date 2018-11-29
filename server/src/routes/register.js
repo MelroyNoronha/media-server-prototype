@@ -42,8 +42,7 @@ router.post("/", (req, res) => {
             );
             res.json({
               message: "You have successfully created an account.",
-              token: token,
-              loggedIn: true
+              token: token
             });
           }
         });

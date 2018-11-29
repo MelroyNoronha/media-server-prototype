@@ -1,16 +1,16 @@
 const alertDiv = document.getElementById("alert-div");
 
-export const renderErrorAlert = text => {
+export const renderErrorMessage = text => {
   text = text.toString();
-  alertDiv.innerHTM = ``;
+  alertDiv.innerHTML = ``;
   alertDiv.innerHTML = `
       <p class="alert-error"><strong>Error:</strong> ${text}</p>
     `;
 };
 
-export const renderSuccessAlert = text => {
+export const renderSuccessMessage = text => {
   text = text.toString();
-  alertDiv.innerHTM = ``;
+  alertDiv.innerHTML = ``;
   alertDiv.innerHTML = `
       <p class="alert-success"><strong>Success:</strong> ${text}</p>
     `;

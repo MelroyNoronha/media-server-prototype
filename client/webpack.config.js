@@ -1,15 +1,13 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-
 module.exports = {
   entry: {
-    loginScript: "./src/scripts/loginScript.js",
-    registerScript: "./src/scripts/registerScript.js"
+    loginScript: "./src/js/loginScript.js",
+    registerScript: "./src/js/registerScript.js",
+    dashboardScript: "./src/js/dashboardScript.js"
   },
   output: {
     filename: "[name].js",
     path: __dirname + "/dist"
   },
-  plugins: [new HtmlWebpackPlugin()],
   module: {
     rules: [
       {
@@ -17,10 +15,11 @@ module.exports = {
         use: {
           loader: "babel-loader",
           query: {
-            presets: ["env"]
+            presets: ["@babel/env"]
           }
         }
       }
     ]
-  }
+  },
+  mode: "development"
 };

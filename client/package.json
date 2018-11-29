@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "front-end for media server powered by raspberry pi",
   "scripts": {
-    "start": ""
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -16,11 +16,10 @@
   },
   "homepage": "https://github.com/MelroyNoronha/media-server-prototype#readme",
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.4",
-    "babel-preset-env": "^1.7.0",
-    "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2"
   }
