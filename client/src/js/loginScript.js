@@ -1,5 +1,4 @@
 import { renderErrorMessage, renderSuccessMessage } from "./renderMessages";
-import storeJwtInLocalStorage from "./storeJwtInLocalStorage";
 
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
@@ -26,8 +25,19 @@ submitBtn.addEventListener("click", e => {
         renderErrorMessage(data.error);
       }
       if (data.message) {
-        storeJwtInLocalStorage(data.token);
+        localStorage.setItem("media-server-token", data.token.toString());
         renderSuccessMessage(data.message);
+        fetch("http://localhost:8083/dashboard", {
+          method: "post",
+          headers: {
+            authorization: JSON.stringify(
+              localStorage.getItem("media-server-token")
+            ),
+            "Content-Type": "application/json"
+          }
+        })
+          .then(res => res.json())
+          .then(data => console.log(data));
       }
     });
 });

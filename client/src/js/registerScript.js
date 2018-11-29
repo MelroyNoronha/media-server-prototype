@@ -1,5 +1,4 @@
 import { renderErrorMessage, renderSuccessMessage } from "./renderMessages";
-import storeJwtInLocalStorage from "./storeJwtInLocalStorage";
 
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
@@ -54,7 +53,7 @@ submitBtn.addEventListener("click", e => {
         }
         if (data.message) {
           renderSuccessMessage(data.message);
-          storeJwtInLocalStorage(data.token);
+          localStorage.setItem(data.token);
         }
       });
   }
