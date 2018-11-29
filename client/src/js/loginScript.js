@@ -30,14 +30,17 @@ submitBtn.addEventListener("click", e => {
         fetch("http://localhost:8083/dashboard", {
           method: "post",
           headers: {
-            authorization: JSON.stringify(
-              localStorage.getItem("media-server-token")
-            ),
+            authorization: localStorage.getItem("media-server-token"),
             "Content-Type": "application/json"
           }
         })
           .then(res => res.json())
-          .then(data => console.log(data));
+          .then(data => {
+            if (data.error) {
+              console.log(error);
+            }
+            console.log(data);
+          });
       }
     });
 });

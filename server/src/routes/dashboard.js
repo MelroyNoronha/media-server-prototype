@@ -5,7 +5,13 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   if (req.headers.authorization) {
-    res.json({ message: "You sent an auth token" });
+    jwt.verify(req.headers.authorization, process.env.JWT_SECRET, error => {
+      if (error) {
+        res.json(error);
+      } else {
+        res.json({ tokenVerified: true });
+      }
+    });
   }
 });
 
