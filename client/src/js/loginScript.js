@@ -39,7 +39,9 @@ submitBtn.addEventListener("click", e => {
             if (data.error) {
               console.log(error);
             }
-            console.log(data);
+            if (data.tokenVerified == true) {
+              window.location = "./dashboard.html";
+            }
           });
       }
     });
