@@ -21,3 +21,11 @@ window.onload = () => {
       });
   }
 };
+
+const uploadBtn = document.getElementById("upload-btn");
+const fileInput = document.getElementById("file-input");
+
+uploadBtn.addEventListener("click", e => {
+  e.preventDefault();
+  fileInput.click();
+});
