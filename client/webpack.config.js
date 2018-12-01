@@ -1,5 +1,6 @@
 module.exports = {
   entry: {
+    indexScript: "./src/js/indexScript.js",
     loginScript: "./src/js/loginScript.js",
     registerScript: "./src/js/registerScript.js",
     dashboardScript: "./src/js/dashboardScript.js"
