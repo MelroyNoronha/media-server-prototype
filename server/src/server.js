@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import auth from "./routes/auth";
 import register from "./routes/register";
 import dashboard from "./routes/dashboard";
+import upload from "./routes/upload";
 import mongoose from "mongoose";
 import User from "./models/User";
 import dotenv from "dotenv";
@@ -28,6 +29,7 @@ app.use(cors());
 app.use("/auth", auth);
 app.use("/register", register);
 app.use("/dashboard", dashboard);
+app.use("/upload", upload);
 app.get("/users", (req, res) => {
   User.find({}, (err, users) => {
     res.json({ users });
