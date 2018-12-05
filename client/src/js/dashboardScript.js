@@ -31,13 +31,8 @@ uploadBtn.addEventListener("click", e => {
 });
 
 fileInput.addEventListener("change", () => {
-  let uploadedFile = fileInput.files[0];
-  const formData = new FormData();
-
-  for (var key in uploadedFile) {
-    formData.append(key, uploadedFile[key]);
-  }
-  console.log(uploadedFile);
+  let formData = new FormData();
+  formData.append("uploaded-file", fileInput.files[0]);
 
   fetch("http://localhost:8083/upload", {
     method: "post",
