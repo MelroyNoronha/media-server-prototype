@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
       let token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET, {
         expiresIn: 3600
       });
-      res.json({ message: `login successfull!`, token: token });
+      res.json({ message: `login successfull!`, token: token, email: req.body.email });
     } else {
       res.json({ error: "wrong password!" });
     }

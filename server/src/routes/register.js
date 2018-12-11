@@ -43,7 +43,8 @@ router.post("/", (req, res) => {
             );
             res.json({
               message: "You have successfully created an account.",
-              token: token
+              token: token,
+              email: req.body.email
             });
           }
         });

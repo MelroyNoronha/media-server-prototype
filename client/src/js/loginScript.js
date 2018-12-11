@@ -1,5 +1,6 @@
 import { renderErrorMessage, renderSuccessMessage } from "./renderMessages";
 import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
+import saveCredentialsToStorage from "./saveCredentialsToStorage";
 
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
@@ -26,7 +27,7 @@ submitBtn.addEventListener("click", e => {
         renderErrorMessage(data.error);
       }
       if (data.message) {
-        localStorage.setItem("media-server-token", data.token.toString());
+        saveCredentialsToStorage(data);
         renderSuccessMessage(data.message);
         verifyAndRedirectToDashboard();
       }
