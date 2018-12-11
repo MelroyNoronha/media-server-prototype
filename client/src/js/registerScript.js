@@ -1,4 +1,5 @@
 import { renderErrorMessage, renderSuccessMessage } from "./renderMessages";
+import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
 
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
@@ -53,7 +54,8 @@ submitBtn.addEventListener("click", e => {
         }
         if (data.message) {
           renderSuccessMessage(data.message);
-          localStorage.setItem(data.token);
+          localStorage.setItem("media-server-token", data.token);
+          verifyAndRedirectToDashboard();
         }
       });
   }

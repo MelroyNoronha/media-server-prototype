@@ -1,4 +1,5 @@
 import { renderErrorMessage, renderSuccessMessage } from "./renderMessages";
+import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
 
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
@@ -27,22 +28,7 @@ submitBtn.addEventListener("click", e => {
       if (data.message) {
         localStorage.setItem("media-server-token", data.token.toString());
         renderSuccessMessage(data.message);
-        fetch("http://localhost:8083/dashboard", {
-          method: "post",
-          headers: {
-            authorization: localStorage.getItem("media-server-token"),
-            "Content-Type": "application/json"
-          }
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.error) {
-              console.log(error);
-            }
-            if (data.tokenVerified == true) {
-              window.location = "./dashboard.html";
-            }
-          });
+        verifyAndRedirectToDashboard();
       }
     });
 });
