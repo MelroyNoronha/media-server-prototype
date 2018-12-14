@@ -1,5 +1,6 @@
 import express from "express";
 import multer from "multer";
+import User from "../models/User";
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -7,17 +8,27 @@ const storage = multer.diskStorage({
     cb(null, "./userFiles");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname);
+    cb(null, file.originalname);
   }
 });
 const upload = multer({ storage: storage });
 
 router.post("/", upload.single("uploaded-file"), (req, res) => {
-  console.log(req.body, req.file, req.file.filename);
   if (req.file) {
-    res.json({ message: "fetch complete" });
+    User.updateOne(
+      { email: req.body.email },
+      { $push: { files: req.file.filename } },
+      (err, document) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(document);
+          res.json({ message: "file uploaded successfully" });
+        }
+      }
+    );
   } else {
-    res.json({ message: ":(" });
+    res.json({ message: "something went wrong :(" });
   }
 });
 

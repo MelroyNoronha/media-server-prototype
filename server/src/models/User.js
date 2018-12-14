@@ -10,10 +10,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  files: [{
-    filename: String,
+  files: {
+    type: Array,
     required: false
-  }]
+  }
 });
 
 userSchema.methods.comparePasswordHash = password =>

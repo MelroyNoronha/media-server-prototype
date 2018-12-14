@@ -33,9 +33,13 @@ uploadBtn.addEventListener("click", e => {
 fileInput.addEventListener("change", () => {
   let formData = new FormData();
   formData.append("uploaded-file", fileInput.files[0]);
+  formData.append("email", localStorage.getItem("media-server-email"));
 
   fetch("http://localhost:8083/upload", {
     method: "post",
+    headers: {
+      authorization: localStorage.getItem("media-sever-token")
+    },
     body: formData
   })
     .then(res => res.json())
