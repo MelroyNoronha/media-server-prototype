@@ -11,25 +11,31 @@ const storage = new multerGfsStorage({
   url: `mongodb://localhost:8082/${process.env.DB_NAME}`,
   file: (req, file) => {
     return {
-      filename: file.originalname,
-      metadata: file.metadata,
+      filename: `${file.originalname}-${Date.now()}`,
       bucketName: "userFiles"
     };
   }
 });
-console.log(`mongodb://localhost:8082/${process.env.DB_NAME}`);
+
 const upload = multer({ storage: storage });
 
 router.post("/", upload.single("uploaded-file"), (req, res) => {
   if (req.file) {
     User.updateOne(
       { email: req.body.email },
-      { $push: { files: req.file.filename } },
+      {
+        $push: {
+          files: { filename: req.file.filename, fileId: req.file.id }
+        }
+      },
       (err, document) => {
         if (err) {
           console.log(err);
         } else {
-          res.json({ message: "file uploaded successfully", file: req.file });
+          res.json({
+            message: "file uploaded successfully",
+            file: req.file
+          });
         }
       }
     );
