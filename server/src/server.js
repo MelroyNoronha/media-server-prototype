@@ -4,6 +4,7 @@ import auth from "./routes/auth";
 import register from "./routes/register";
 import dashboard from "./routes/dashboard";
 import upload from "./routes/upload";
+import userFiles from "./routes/userFiles";
 import mongoose from "mongoose";
 import User from "./models/User";
 import dotenv from "dotenv";
@@ -30,10 +31,13 @@ app.use("/auth", auth);
 app.use("/register", register);
 app.use("/dashboard", dashboard);
 app.use("/upload", upload);
+app.use("/userFiles", userFiles);
+
+// users route only for testing
 app.get("/users", (req, res) => {
   User.find({}, (err, users) => {
     res.json({ users });
   });
 });
 
-app.listen(8083, _ => console.log("server running ..." + __dirname));
+app.listen(8083, _ => console.log("server running on 8083..." + __dirname));
