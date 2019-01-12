@@ -15,8 +15,15 @@ window.onload = () => {
           window.location = "./login.html";
         }
         if (data.tokenVerified == true) {
-          console.log("here is all your data enjoy :)");
-          //fetch("http://localhost:8083/userData");
+          fetch("http://localhost:8083/userFiles", {
+            method: "get",
+            headers: {
+              authorization: localStorage.getItem("media-server-token"),
+              user: localStorage.getItem("media-server-email")
+            }
+          })
+            .then(res => res.json())
+            .then(data => console.log(data.message, data.files));
         }
       });
   }
