@@ -1,6 +1,6 @@
 import express from "express";
-import mongoose from "mongoose";
 import Grid from "gridfs-stream";
+import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import User from "../models/User";
@@ -22,32 +22,23 @@ router.get("/", (req, res) => {
     } else {
       User.findOne({ email: req.headers.user })
         .then(user => {
-          let userFileIds = [];
-          user.files.forEach(file => {
-            userFileIds.push(file.fileId);
+          let userFileNames = [];
+          user.files.forEach(file => userFileNames.push(file.filename));
+          return userFileNames;
+        })
+        .then(userFileNames => {
+          gfs.files.find().toArray((err, files) => {
+            if (err) console.error(err);
+            if (files) {
+              let userFiles = files.filter(file => {
+                if (userFileNames.includes(file.filename)) {
+                  return file;
+                }
+              });
+              res.json({ message: "Here are your files", files: userFiles });
+            }
           });
-          return userFileIds;
-        })
-        .then(userFileIds => {
-          let getUserFile = function(fileId) {
-            gfs.findOne({ _id: "5c2f707c2e41b137125c301e" }, (err, file) => {
-              if (err) console.error(err);
-              if (file)
-                return new Promise((reject, resolve) => {
-                  resolve(file);
-                });
-            });
-          };
-
-          let userFiles = [];
-          getUserFile(file.fileId).then(userFile => userFiles.push(userFile));
-
-          console.log(userFiles);
-          return userFiles;
-        })
-        .then(userFiles =>
-          res.json({ message: "These are your files", userFiles: userFiles })
-        );
+        });
     }
   });
 });
