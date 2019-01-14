@@ -1,3 +1,5 @@
+import fetchAndRenderUserFiles from "../js/fetchAndRenderUserFiles";
+
 window.onload = () => {
   if (!localStorage.getItem("media-server-token")) {
     window.location = "./login.html";
@@ -15,15 +17,7 @@ window.onload = () => {
           window.location = "./login.html";
         }
         if (data.tokenVerified == true) {
-          fetch("http://localhost:8083/userFiles", {
-            method: "get",
-            headers: {
-              authorization: localStorage.getItem("media-server-token"),
-              user: localStorage.getItem("media-server-email")
-            }
-          })
-            .then(res => res.json())
-            .then(data => console.log(data.message, data.files));
+          fetchAndRenderUserFiles();
         }
       });
   }
@@ -50,5 +44,8 @@ fileInput.addEventListener("change", () => {
     body: formData
   })
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => {
+      alert(data.message);
+      window.location.reload();
+    });
 });
