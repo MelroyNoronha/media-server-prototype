@@ -29,13 +29,20 @@ router.get("/", (req, res) => {
         .then(userFileNames => {
           gfs.files.find().toArray((err, files) => {
             if (err) console.error(err);
+
             if (files) {
               let userFiles = files.filter(file => {
                 if (userFileNames.includes(file.filename)) {
                   return file;
                 }
               });
-              res.json({ message: "Here are your files", files: userFiles });
+
+              userFiles.length === 0
+                ? res.json({ message: "You haven't uploaded any files yet" })
+                : res.json({
+                    message: "Here are your files",
+                    files: userFiles
+                  });
             }
           });
         });
