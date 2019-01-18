@@ -4,38 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="theme-color" content="#282539" />
     <title>Login</title>
     <link rel="icon" href="./favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
-    />
-    <link rel="stylesheet" href="./styles/loginStyle.css" />
-    <link rel="stylesheet" href="./styles/alertStyle.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
+    <link rel="stylesheet" href="./styles/nav.css" />
+    <link rel="stylesheet" href="./styles/alert-modal.css" />
   </head>
 
   <body>
+    <div id="nav"><a href="index.html">Home</a></div>
+
     <h1>Login</h1>
 
-    <div id="alert-div"></div>
+    <div id="alert-modal">
+      <div id="alert-div"></div>
+      <br />
+      <button id="close-modal-btn">Close</button>
+    </div>
 
     <form id="form" autocomplete="on">
       <div id="email-div">
-        <label for="email">Email:</label>
-        <input id="email-input" type="email" name="email-input" required />
+        <label for="email">Email</label> <br />
+        <input
+          id="email-input"
+          type="email"
+          name="email-input"
+          placeholder="user@email.com"
+          autocomplete="on"
+          required
+        />
       </div>
 
       <div id="password-div">
-        <label for="password">Password:</label>
+        <label for="password">Password</label> <br />
         <input
           id="password-input"
           type="password"
           name="password-input"
+          autocomplete="on"
           required
         />
       </div>
 
       <button id="submit-btn" type="button">Submit</button>
+      <div id="register-link">
+        <p>Not registered? Register <a href="register.html">here.</a></p>
+      </div>
     </form>
     <script src="../dist/loginScript.js"></script>
   </body>

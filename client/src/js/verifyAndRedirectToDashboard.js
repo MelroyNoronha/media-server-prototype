@@ -1,5 +1,5 @@
 const verifyTokenAndRedirectToDashboard = () => {
-  fetch("http://localhost:8083/dashboard", {
+  fetch("http://localhost:8081/dashboard", {
     method: "post",
     headers: {
       authorization: localStorage.getItem("media-server-token"),

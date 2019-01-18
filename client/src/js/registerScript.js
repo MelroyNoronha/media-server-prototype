@@ -1,4 +1,4 @@
-import { renderErrorMessage, renderSuccessMessage } from "./renderMessages";
+import { showModalMessage } from "./modalController";
 import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
 import saveCredentialsToStorage from "./saveCredentialsToStorage";
 
@@ -11,16 +11,16 @@ let dataIsValid = false;
 
 const doClientSideValidation = (email, password, confirmedPassword) => {
   if (!email) {
-    renderErrorMessage(`Email is empty.`);
+    showModalMessage(`Email is empty.`);
     dataIsValid = false;
   } else if (!password) {
-    renderErrorMessage(`Password is empty`);
+    showModalMessage(`Password is empty`);
     dataIsValid = false;
   } else if (!confirmedPassword) {
-    renderErrorMessage(`Confirm your password`);
+    showModalMessage(`Confirm your password`);
     dataIsValid = false;
   } else if (password.toString() !== confirmedPassword.toString()) {
-    renderErrorMessage(`Passwords don't match.`);
+    showModalMessage(`Passwords don't match.`);
     dataIsValid = false;
   } else {
     dataIsValid = true;
@@ -41,7 +41,7 @@ submitBtn.addEventListener("click", e => {
       password: password
     };
 
-    fetch("http://localhost:8083/register", {
+    fetch("http://localhost:8081/register", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -51,10 +51,10 @@ submitBtn.addEventListener("click", e => {
       .then(res => res.json())
       .then(data => {
         if (data.error) {
-          renderErrorMessage(data.error);
+          showModalMessage(data.error);
         }
         if (data.message) {
-          renderSuccessMessage(data.message);
+          showModalMessage(data.message);
           saveCredentialsToStorage(data);
           verifyAndRedirectToDashboard();
         }

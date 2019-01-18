@@ -2,19 +2,19 @@ const fileList = document.getElementById("file-list");
 
 const renderUserFiles = files => {
   files.forEach((file, index) => {
-    fileList.innerHTML += 
-    `</br> 
+    fileList.innerHTML += `
       <li id="file-${index}"> 
-        <h4> ${file.filename} </h4>
-        <p> Uploaded on: ${file.uploadDate}</p>
-        <p> Type: ${file.contentType}</p>
+        <h3> ${file.filename} </h3>
+        <p> <strong>Uploaded on:</strong> ${file.uploadDate}</p>
+        <p> <strong>Type:</strong> ${file.contentType}</p>
+        <button id="file-btn-${index}">Download</button>
       </li> 
-    </br>`;
+    `;
   });
 };
 
 export default () => {
-  fetch("http://localhost:8083/userFiles", {
+  fetch("http://localhost:8081/userFiles", {
     method: "get",
     headers: {
       authorization: localStorage.getItem("media-server-token"),

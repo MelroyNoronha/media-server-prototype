@@ -4,18 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="theme-color" content="#282539" />
     <title>Form</title>
     <link rel="icon" href="./favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
-      type="text/css"
-    />
+    <link rel="stylesheet" href="../src/styles/index.css" type="text/css" />
   </head>
 
   <body>
-    <button id="login-btn">Login</button>
-    <button id="register-btn">Register</button>
+    <div class="container">
+      <h1 id="welcome-message">
+        Welcome To Your<br />
+        Media Server.
+      </h1>
+
+      <button class="button" id="login-btn">LOGIN</button>
+      <button class="button" id="register-btn">REGISTER</button>
+    </div>
     <script src="../dist/indexScript.js"></script>
   </body>
 </html>

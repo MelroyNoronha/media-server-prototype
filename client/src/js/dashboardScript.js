@@ -4,7 +4,7 @@ window.onload = () => {
   if (!localStorage.getItem("media-server-token")) {
     window.location = "./login.html";
   } else {
-    fetch("http://localhost:8083/dashboard", {
+    fetch("http://localhost:8081/dashboard", {
       method: "post",
       headers: {
         authorization: localStorage.getItem("media-server-token"),
@@ -36,7 +36,7 @@ fileInput.addEventListener("change", () => {
   formData.append("uploaded-file", fileInput.files[0]);
   formData.append("email", localStorage.getItem("media-server-email"));
 
-  fetch("http://localhost:8083/upload", {
+  fetch("http://localhost:8081/upload", {
     method: "post",
     headers: {
       authorization: localStorage.getItem("media-sever-token")

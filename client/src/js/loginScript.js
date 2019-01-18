@@ -1,4 +1,4 @@
-import { renderErrorMessage, renderSuccessMessage } from "./renderMessages";
+import { showModalMessage } from "./modalController";
 import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
 import saveCredentialsToStorage from "./saveCredentialsToStorage";
 
@@ -14,7 +14,7 @@ submitBtn.addEventListener("click", e => {
     password: passwordInput.value.toString()
   };
 
-  fetch("http://localhost:8083/auth", {
+  fetch("http://localhost:8081/auth", {
     method: "post",
     headers: {
       "Content-Type": "application/json"
@@ -24,11 +24,11 @@ submitBtn.addEventListener("click", e => {
     .then(res => res.json())
     .then(data => {
       if (data.error) {
-        renderErrorMessage(data.error);
+        showModalMessage(data.error);
       }
       if (data.message) {
         saveCredentialsToStorage(data);
-        renderSuccessMessage(data.message);
+        showModalMessage(data.message);
         verifyAndRedirectToDashboard();
       }
     });
