@@ -1,6 +1,7 @@
 import { showModalMessage } from "./modalController";
 import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
 import saveCredentialsToStorage from "./saveCredentialsToStorage";
+import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
 
 const emailInput = document.getElementById("email-input");
 const passwordInput = document.getElementById("password-input");
@@ -14,6 +15,7 @@ submitBtn.addEventListener("click", e => {
     password: passwordInput.value.toString()
   };
 
+  showLoadingGif();
   fetch("http://localhost:8081/auth", {
     method: "post",
     headers: {
@@ -23,6 +25,7 @@ submitBtn.addEventListener("click", e => {
   })
     .then(res => res.json())
     .then(data => {
+      hideLoadingGif();
       if (data.error) {
         showModalMessage(data.error);
       }

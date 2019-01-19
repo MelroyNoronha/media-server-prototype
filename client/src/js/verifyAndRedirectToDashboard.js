@@ -1,4 +1,7 @@
+import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
+
 const verifyTokenAndRedirectToDashboard = () => {
+  showLoadingGif();
   fetch("http://localhost:8081/dashboard", {
     method: "post",
     headers: {
@@ -8,6 +11,7 @@ const verifyTokenAndRedirectToDashboard = () => {
   })
     .then(res => res.json())
     .then(data => {
+      hideLoadingGif();
       if (data.error) {
         console.log(error);
       }
@@ -15,6 +19,6 @@ const verifyTokenAndRedirectToDashboard = () => {
         window.location = "./dashboard.html";
       }
     });
-}
+};
 
 export default verifyTokenAndRedirectToDashboard;

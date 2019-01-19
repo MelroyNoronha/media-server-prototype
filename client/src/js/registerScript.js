@@ -1,4 +1,5 @@
 import { showModalMessage } from "./modalController";
+import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
 import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
 import saveCredentialsToStorage from "./saveCredentialsToStorage";
 
@@ -41,6 +42,7 @@ submitBtn.addEventListener("click", e => {
       password: password
     };
 
+    showLoadingGif();
     fetch("http://localhost:8081/register", {
       method: "post",
       headers: {
@@ -50,6 +52,7 @@ submitBtn.addEventListener("click", e => {
     })
       .then(res => res.json())
       .then(data => {
+        hideLoadingGif();
         if (data.error) {
           showModalMessage(data.error);
         }

@@ -1,9 +1,12 @@
+import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
+import { showModalMessage } from "./modalController";
 import fetchAndRenderUserFiles from "../js/fetchAndRenderUserFiles";
 
 window.onload = () => {
   if (!localStorage.getItem("media-server-token")) {
     window.location = "./login.html";
   } else {
+    showLoadingGif();
     fetch("http://localhost:8081/dashboard", {
       method: "post",
       headers: {
@@ -13,6 +16,7 @@ window.onload = () => {
     })
       .then(res => res.json())
       .then(data => {
+        hideLoadingGif();
         if (data.error) {
           window.location = "./login.html";
         }
@@ -36,6 +40,7 @@ fileInput.addEventListener("change", () => {
   formData.append("uploaded-file", fileInput.files[0]);
   formData.append("email", localStorage.getItem("media-server-email"));
 
+  showLoadingGif();
   fetch("http://localhost:8081/upload", {
     method: "post",
     headers: {
@@ -45,7 +50,8 @@ fileInput.addEventListener("change", () => {
   })
     .then(res => res.json())
     .then(data => {
-      alert(data.message);
+      hideLoadingGif();
       window.location.reload();
+      showModalMessage(data.message);
     });
 });

@@ -1,0 +1,23 @@
+#loading-gif-div {
+  display: none;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  margin: 0px;
+  padding: 0px;
+  z-index: 1;
+}
+#loading-gif-div > img {
+  height: 60%;
+  width: 60%;
+}
+
+@media only screen and (max-width: 550px) {
+  #loading-gif-div {
+    left: 35%;
+  }
+  #loading-gif-div > img{
+    height: 50%;
+    width: 50%;
+  }
+}

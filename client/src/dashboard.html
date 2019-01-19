@@ -10,12 +10,30 @@
     <link rel="stylesheet" href="./styles/dashboard.css" />
     <link rel="stylesheet" href="./styles/nav.css" />
     <link rel="stylesheet" href="./styles/alert-modal.css" />
+    <link
+      rel="stylesheet"
+      href="../src/styles/loading-gif.css"
+      type="text/css"
+    />
   </head>
   <body>
     <div id="nav"><a href="index.html">Log Out</a></div>
+
+    <div id="loading-gif-div">
+      <img src="./images/loading.gif" alt="loading animation" />
+    </div>
+
     <h1>Welcome to the Dashboard!</h1>
+
+    <div id="alert-modal">
+      <div id="alert-div"></div>
+      <br />
+      <button id="close-modal-btn">Close</button>
+    </div>
+
     <input id="file-input" type="file" />
     <button id="upload-btn" type="submit">Upload file</button>
+
     <div id="file-list-div">
       <h1>Files</h1>
       <ul id="file-list"></ul>
