@@ -55,3 +55,21 @@ fileInput.addEventListener("change", () => {
       showModalMessage(data.message);
     });
 });
+
+const fileListDiv = document.getElementById("file-list-div");
+
+fileListDiv.addEventListener("click", e => {
+  e.preventDefault();
+  let clickedFileId = e.target.parentNode.id;
+  console.log(clickedFileId);
+
+  fetch("http://localhost:8081/download", {
+    method: "get",
+    headers: {
+      authorization: localStorage.getItem("media-server-token"),
+      requestedFileId: clickedFileId
+    }
+  })
+    .then(res => res.json())
+    .then(data => console.log(data));
+});
