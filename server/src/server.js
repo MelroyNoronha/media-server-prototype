@@ -5,6 +5,7 @@ import register from "./routes/register";
 import dashboard from "./routes/dashboard";
 import upload from "./routes/upload";
 import userFiles from "./routes/userFiles";
+import download from "./routes/download";
 import mongoose from "mongoose";
 import User from "./models/User";
 import dotenv from "dotenv";
@@ -32,6 +33,7 @@ app.use("/register", register);
 app.use("/dashboard", dashboard);
 app.use("/upload", upload);
 app.use("/userFiles", userFiles);
+app.use("/download", download);
 
 // users route only for testing
 app.get("/users", (req, res) => {
