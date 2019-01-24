@@ -1,6 +1,7 @@
 import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
 import { showModalMessage } from "./modalController";
 import fetchAndRenderUserFiles from "../js/fetchAndRenderUserFiles";
+import saveBlobToFile from "./saveBlobToFile";
 
 window.onload = () => {
   if (!localStorage.getItem("media-server-token")) {
@@ -61,15 +62,17 @@ const fileListDiv = document.getElementById("file-list-div");
 fileListDiv.addEventListener("click", e => {
   e.preventDefault();
   let clickedFileId = e.target.parentNode.id;
-  console.log(clickedFileId);
+  let clickedFileName = e.target.parentNode.querySelector("h3").innerText;
 
   fetch("http://localhost:8081/download", {
     method: "get",
     headers: {
       authorization: localStorage.getItem("media-server-token"),
-      requestedFileId: clickedFileId
+      _id: clickedFileId
     }
   })
-    .then(res => res.json())
-    .then(data => console.log(data));
+    .then(res => res.blob())
+    .then(blob => {
+      saveBlobToFile(blob, clickedFileName);
+    });
 });

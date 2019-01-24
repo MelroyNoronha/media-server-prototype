@@ -4,7 +4,7 @@ const renderUserFiles = files => {
   files.forEach((file, index) => {
     fileList.innerHTML += `
       <li id="${file._id}"> 
-        <h3> ${file.filename} </h3>
+        <h3 id="${file.filename}"> ${file.filename} </h3>
         <p> <strong>Uploaded on:</strong> ${file.uploadDate}</p>
         <p> <strong>Type:</strong> ${file.contentType}</p>
         <button id="btn-${index}">Download</button>
