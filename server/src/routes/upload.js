@@ -11,7 +11,7 @@ const storage = new multerGfsStorage({
   url: `mongodb://localhost:8082/${process.env.DB_NAME}`,
   file: (req, file) => {
     return {
-      filename: `${file.originalname}-${Date.now()}`,
+      filename: `${file.originalname}`,
       bucketName: "userFiles"
     };
   }
