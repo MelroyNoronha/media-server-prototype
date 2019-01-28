@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
           { email: req.body.email },
           process.env.JWT_SECRET,
           {
-            expiresIn: 3600
+            expiresIn: "7d"
           }
         );
         res.json({
