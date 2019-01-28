@@ -1,7 +1,6 @@
 import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
 import { showModalMessage } from "./modalController";
-import fetchAndRenderUserFiles from "../js/fetchAndRenderUserFiles";
-import saveBlobToFile from "./saveBlobToFile";
+import fetchAndRenderUserFileList from "./fetchAndRenderUserFileList";
 
 window.onload = () => {
   if (!localStorage.getItem("media-server-token")) {
@@ -22,7 +21,7 @@ window.onload = () => {
           window.location = "./login.html";
         }
         if (data.tokenVerified == true) {
-          fetchAndRenderUserFiles();
+          fetchAndRenderUserFileList();
         }
       });
   }
@@ -54,27 +53,5 @@ fileInput.addEventListener("change", () => {
       hideLoadingGif();
       window.location.reload();
       showModalMessage(data.message);
-    });
-});
-
-const fileListDiv = document.getElementById("file-list-div");
-
-fileListDiv.addEventListener("click", e => {
-  e.preventDefault();
-  let clickedFileId = e.target.parentNode.id;
-  let clickedFileName = e.target.parentNode.querySelector("h3").innerText;
-
-  showLoadingGif();
-  fetch("http://localhost:8081/download", {
-    method: "get",
-    headers: {
-      authorization: localStorage.getItem("media-server-token"),
-      _id: clickedFileId
-    }
-  })
-    .then(res => res.blob())
-    .then(blob => {
-      hideLoadingGif();
-      saveBlobToFile(blob, clickedFileName);
     });
 });

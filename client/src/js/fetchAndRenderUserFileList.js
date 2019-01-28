@@ -1,13 +1,15 @@
+import setupDownloadButtonHandlers from "./setupDownloadButtonHandlers";
+
 const fileList = document.getElementById("file-list");
 
-const renderUserFiles = files => {
+const renderUserFileList = files => {
   files.forEach((file, index) => {
     fileList.innerHTML += `
       <li id="${file._id}"> 
         <h3 id="${file.filename}"> ${file.filename} </h3>
         <p> <strong>Uploaded on:</strong> ${file.uploadDate}</p>
         <p> <strong>Type:</strong> ${file.contentType}</p>
-        <button id="btn-${index}">Download</button>
+        <button id="btn-${index}" class="download-btn">Download</button>
       </li> 
     `;
   });
@@ -23,6 +25,9 @@ export default () => {
   })
     .then(res => res.json())
     .then(data => {
-      if (data.files) renderUserFiles(data.files);
+      if (data.files) {
+        renderUserFileList(data.files);
+        setupDownloadButtonHandlers();
+      }
     });
 };
