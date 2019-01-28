@@ -45,7 +45,7 @@ fileInput.addEventListener("change", () => {
   fetch("http://localhost:8081/upload", {
     method: "post",
     headers: {
-      authorization: localStorage.getItem("media-sever-token")
+      authorization: localStorage.getItem("media-server-token")
     },
     body: formData
   })
@@ -64,6 +64,7 @@ fileListDiv.addEventListener("click", e => {
   let clickedFileId = e.target.parentNode.id;
   let clickedFileName = e.target.parentNode.querySelector("h3").innerText;
 
+  showLoadingGif();
   fetch("http://localhost:8081/download", {
     method: "get",
     headers: {
@@ -73,6 +74,7 @@ fileListDiv.addEventListener("click", e => {
   })
     .then(res => res.blob())
     .then(blob => {
+      hideLoadingGif();
       saveBlobToFile(blob, clickedFileName);
     });
 });
