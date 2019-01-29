@@ -1,6 +1,6 @@
 #loading-gif-div {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 30%;
   left: 40%;
   margin: 0px;
