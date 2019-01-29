@@ -6,6 +6,7 @@ import dashboard from "./routes/dashboard";
 import upload from "./routes/upload";
 import userFiles from "./routes/userFiles";
 import download from "./routes/download";
+import deleteFile from "./routes/deleteFile";
 import mongoose from "mongoose";
 import User from "./models/User";
 import dotenv from "dotenv";
@@ -34,6 +35,7 @@ app.use("/dashboard", dashboard);
 app.use("/upload", upload);
 app.use("/userFiles", userFiles);
 app.use("/download", download);
+app.use("/deleteFile", deleteFile);
 
 // users route only for testing
 app.get("/users", (req, res) => {
