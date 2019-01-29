@@ -1,18 +1,26 @@
+const genericModal = document.getElementById("generic-modal");
 const alertDiv = document.getElementById("alert-div");
-const alertModal = document.getElementById("alert-modal");
-
 const closeModalBtn = document.getElementById("close-modal-btn");
 
 closeModalBtn.addEventListener("click", e => {
   e.preventDefault();
-  alertModal.style.display = "none";
+  genericModal.style.display = "none";
   alertDiv.innerHTML = "";
 });
 
-export const showModalMessage = text => {
+export const showGenericMessageModal = text => {
   text = text.toString();
   alertDiv.innerHTML = `
   <p>${text}</p>
   `;
-  alertModal.style.display = "block";
+  genericModal.style.display = "block";
+};
+
+const deleteWarnModal = document.getElementById("delete-warn-modal");
+const deleteAlertDiv = document.getElementById("delete-alert-div");
+
+export const showDeleteWarningModal = text => {
+  text = text.toString();
+  deleteAlertDiv.innerHTML = `<p>${text}</p>`;
+  deleteWarnModal.style.display = "block";
 };

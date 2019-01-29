@@ -9,7 +9,7 @@
     <link rel="icon" href="./favicon.ico" />
     <link rel="stylesheet" href="./styles/dashboard.css" />
     <link rel="stylesheet" href="./styles/nav.css" />
-    <link rel="stylesheet" href="./styles/alert-modal.css" />
+    <link rel="stylesheet" href="./styles/modal.css" />
     <link
       rel="stylesheet"
       href="../src/styles/loading-gif.css"
@@ -25,10 +25,16 @@
 
     <h1>Welcome to the Dashboard!</h1>
 
-    <div id="alert-modal">
+    <div id="generic-modal">
       <div id="alert-div"></div>
       <br />
       <button id="close-modal-btn">Close</button>
+    </div>
+
+    <div id="delete-warn-modal">
+      <div id="delete-alert-div"></div>
+      <br />
+      <button id="yes-btn">Yes</button> <button id="no-btn">No</button>
     </div>
 
     <input id="file-input" type="file" />

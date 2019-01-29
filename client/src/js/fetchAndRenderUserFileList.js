@@ -1,4 +1,5 @@
 import setupDownloadButtonHandlers from "./setupDownloadButtonHandlers";
+import setupDeleteButtonHandlers from "./setupDeleteButtonHandlers";
 
 const fileList = document.getElementById("file-list");
 
@@ -9,7 +10,12 @@ const renderUserFileList = files => {
         <h3 id="${file.filename}"> ${file.filename} </h3>
         <p> <strong>Uploaded on:</strong> ${file.uploadDate}</p>
         <p> <strong>Type:</strong> ${file.contentType}</p>
-        <button id="btn-${index}" class="download-btn">Download</button>
+        <button id="download-btn-${index}" class="download-btn">
+          Download
+        </button>
+        <button id="delete-btn-${index}" class="delete-btn">
+          Delete
+        </button>
       </li> 
     `;
   });
@@ -28,6 +34,7 @@ export default () => {
       if (data.files) {
         renderUserFileList(data.files);
         setupDownloadButtonHandlers();
+        setupDeleteButtonHandlers();
       }
     });
 };

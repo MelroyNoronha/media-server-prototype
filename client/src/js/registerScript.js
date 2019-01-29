@@ -1,4 +1,4 @@
-import { showModalMessage } from "./modalController";
+import { showGenericMessageModal } from "./modalController";
 import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
 import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
 import saveCredentialsToStorage from "./saveCredentialsToStorage";
@@ -12,16 +12,16 @@ let dataIsValid = false;
 
 const doClientSideValidation = (email, password, confirmedPassword) => {
   if (!email) {
-    showModalMessage(`Email is empty.`);
+    showGenericMessageModal(`Email is empty.`);
     dataIsValid = false;
   } else if (!password) {
-    showModalMessage(`Password is empty`);
+    showGenericMessageModal(`Password is empty`);
     dataIsValid = false;
   } else if (!confirmedPassword) {
-    showModalMessage(`Confirm your password`);
+    showGenericMessageModal(`Confirm your password`);
     dataIsValid = false;
   } else if (password.toString() !== confirmedPassword.toString()) {
-    showModalMessage(`Passwords don't match.`);
+    showGenericMessageModal(`Passwords don't match.`);
     dataIsValid = false;
   } else {
     dataIsValid = true;
@@ -54,10 +54,10 @@ submitBtn.addEventListener("click", e => {
       .then(data => {
         hideLoadingGif();
         if (data.error) {
-          showModalMessage(data.error);
+          showGenericMessageModal(data.error);
         }
         if (data.message) {
-          showModalMessage(data.message);
+          showGenericMessageModal(data.message);
           saveCredentialsToStorage(data);
           verifyAndRedirectToDashboard();
         }

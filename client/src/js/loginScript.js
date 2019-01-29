@@ -1,4 +1,4 @@
-import { showModalMessage } from "./modalController";
+import { showGenericMessageModal } from "./modalController";
 import verifyAndRedirectToDashboard from "./verifyAndRedirectToDashboard";
 import saveCredentialsToStorage from "./saveCredentialsToStorage";
 import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
@@ -27,11 +27,11 @@ submitBtn.addEventListener("click", e => {
     .then(data => {
       hideLoadingGif();
       if (data.error) {
-        showModalMessage(data.error);
+        showGenericMessageModal(data.error);
       }
       if (data.message) {
         saveCredentialsToStorage(data);
-        showModalMessage(data.message);
+        showGenericMessageModal(data.message);
         verifyAndRedirectToDashboard();
       }
     });

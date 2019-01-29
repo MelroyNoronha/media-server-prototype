@@ -90,6 +90,22 @@ h1 {
 .download-btn:hover {
   box-shadow: 0px 6px 20px -4px #e26d5a;
 }
+.delete-btn {
+  all: unset;
+  position: relative;
+  width: auto;
+  top: 1.5vh;
+  left: 5vw;
+  padding: 10px;
+  font-size: 4vw;
+  color: #ffffff;
+  background-color: #e26d5a;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+.delete-btn:hover {
+  box-shadow: 0px 6px 20px -4px #e26d5a;
+}
 
 @media only screen and (min-width: 500px) {
   #upload-btn {

@@ -1,5 +1,5 @@
 import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
-import { showModalMessage } from "./modalController";
+import { showGenericMessageModal } from "./modalController";
 import fetchAndRenderUserFileList from "./fetchAndRenderUserFileList";
 
 window.onload = () => {
@@ -52,6 +52,6 @@ fileInput.addEventListener("change", () => {
     .then(data => {
       hideLoadingGif();
       window.location.reload();
-      showModalMessage(data.message);
+      showGenericMessageModal(data.message);
     });
 });

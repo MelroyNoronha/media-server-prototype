@@ -7,14 +7,15 @@
   }
 }
 
-#alert-modal {
+#generic-modal,
+#delete-warn-modal {
   display: none;
   position: fixed;
   top: 15vh;
   left: 10vw;
   z-index: 1;
   width: 75%;
-  height: 40vh;
+  height: auto;
   background-color: #282539;
   color: #ffffff;
   font-size: 6vw;
@@ -23,7 +24,7 @@
   border-radius: 3%;
   animation: fade-in 300ms;
 }
-#alert-modal > button {
+#generic-modal > button {
   all: unset;
   position: relative;
   top: 6vh;
@@ -34,41 +35,71 @@
   transition: 300ms ease-in;
   cursor: pointer;
 }
-#alert-modal > button:hover {
+#generic-modal > button:hover {
+  box-shadow: 0px 6px 20px -4px #e26d5a;
+}
+
+#delete-warn-modal > button {
+  all: unset;
+  position: relative;
+  padding: 5px;
+  margin: 0px 20px 0px 20px;
+  width: 15vw;
+  font-size: 6vw;
+  background-color: #e26d5a;
+  color: #ffffff;
+  transition: 300ms ease-in;
+  cursor: pointer;
+}
+#delete-warn-modal > button:hover {
   box-shadow: 0px 6px 20px -4px #e26d5a;
 }
 
 @media only screen and (min-width: 550px) {
-  #alert-modal {
+  #generic-modal,
+  #delete-warn-modal {
     font-size: 5vw;
   }
-  #alert-modal > button {
+  #generic-modal > button {
     top: 0vh;
     font-size: 5vw;
+  }
+
+  #delete-warn-modal > button {
+    font-size: 3vw;
   }
 }
 
 @media only screen and (min-width: 780px) {
-  #alert-modal {
+  #generic-modal,
+  #delete-warn-modal {
     width: 60%;
     font-size: 4vw;
   }
-  #alert-modal > button {
+  #generic-modal > button {
     top: 0vh;
     font-size: 4vw;
+  }
+
+  #delete-warn-modal > button {
+    font-size: 2.5vw;
   }
 }
 
 @media only screen and (min-width: 950px) {
-  #alert-modal {
+  #generic-modal,
+  #delete-warn-modal {
+    left: 25vw;
     height: 35vh;
     width: 40%;
     font-size: 2vw;
   }
-  #alert-modal > button {
+  #generic-modal > button {
     top: 0vh;
     font-size: 2vw;
   }
-}
 
-@media;
+  #delete-warn-modal > button {
+    font-size: 2vw;
+  }
+}
