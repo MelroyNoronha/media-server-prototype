@@ -24,14 +24,17 @@ router.post("/", (req, res) => {
       gfs.remove({ _id: req.headers._id, root: "userFiles" }, err => {
         err
           ? console.error(err)
-          : res.json({ message: "file deleted from gridfs" });
+          : res.json({
+              message: `${req.headers.filename} has been deleted permanently`
+            });
       });
 
       //remove file from user record
       User.update(
         { email: req.headers.user },
-        { $pull: { files: { fileId: req.headers._id } } },
-        {safe: true},
+        {
+          $pull: { files: { fileId: mongoose.Types.ObjectId(req.headers._id) } }
+        },
         (err, doc) => {
           err ? console.error(err) : console.log(doc);
         }
