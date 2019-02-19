@@ -8,6 +8,7 @@ import userFiles from "./routes/userFiles";
 import download from "./routes/download";
 import deleteFile from "./routes/deleteFile";
 import mongoose from "mongoose";
+import { mongoURI } from "./globalConstants";
 import User from "./models/User";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -15,17 +16,14 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-mongoose.connect(
-  `mongodb://localhost:8082/${process.env.DB_NAME}`,
-  { useNewUrlParser: true },
-  err => {
-    if (err) {
-      throw err;
-    } else {
-      console.log(`mongodb connected to ${process.env.DB_NAME} `);
-    }
+
+mongoose.connect(mongoURI, { useNewUrlParser: true }, err => {
+  if (err) {
+    throw err;
+  } else {
+    console.log(`mongodb connected to ${process.env.DB_NAME} `);
   }
-);
+});
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -44,4 +42,6 @@ app.get("/users", (req, res) => {
   });
 });
 
-app.listen(8081, _ => console.log("server running on 8083..." + __dirname));
+app.listen(process.env.SERVER_PORT, _ =>
+  console.log(`server running on ${process.env.SERVER_PORT}` + __dirname)
+);

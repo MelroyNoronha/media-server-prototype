@@ -1,5 +1,6 @@
 import express from "express";
 import multer from "multer";
+import { mongoURI } from "../globalConstants";
 import User from "../models/User";
 import dotenv from "dotenv";
 import multerGfsStorage from "multer-gridfs-storage";
@@ -9,7 +10,7 @@ dotenv.config();
 const router = express.Router();
 
 const storage = new multerGfsStorage({
-  url: `mongodb://localhost:8082/${process.env.DB_NAME}`,
+  url: mongoURI,
   file: (req, file) => {
     return {
       filename: `${file.originalname}`,
