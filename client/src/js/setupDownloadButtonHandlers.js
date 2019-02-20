@@ -11,7 +11,7 @@ export default () => {
       const clickedFileName = e.target.parentNode.querySelector("h3").innerText;
 
       showLoadingGif();
-      fetch("http://localhost:8081/download", {
+      fetch(`${process.env.SERVER_URL}/download`, {
         method: "get",
         headers: {
           authorization: localStorage.getItem("media-server-token"),

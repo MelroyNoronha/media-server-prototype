@@ -16,7 +16,7 @@ submitBtn.addEventListener("click", e => {
   };
 
   showLoadingGif();
-  fetch("http://localhost:8081/auth", {
+  fetch(`${process.env.SERVER_URL}/auth`, {
     method: "post",
     headers: {
       "Content-Type": "application/json"

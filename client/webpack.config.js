@@ -1,3 +1,5 @@
+const dotenv = require("dotenv-webpack");
+
 module.exports = {
   entry: {
     indexScript: "./src/js/indexScript.js",
@@ -22,5 +24,6 @@ module.exports = {
       }
     ]
   },
-  mode: "development"
+  mode: "development",
+  plugins: [new dotenv()]
 };

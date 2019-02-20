@@ -22,7 +22,7 @@ const renderUserFileList = files => {
 };
 
 export default () => {
-  fetch("http://localhost:8081/userFiles", {
+  fetch(`${process.env.SERVER_URL}/userFiles`, {
     method: "get",
     headers: {
       authorization: localStorage.getItem("media-server-token"),

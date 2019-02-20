@@ -2,7 +2,7 @@ import { showLoadingGif, hideLoadingGif } from "./loadingGifController";
 
 const verifyTokenAndRedirectToDashboard = () => {
   showLoadingGif();
-  fetch("http://localhost:8081/dashboard", {
+  fetch(`${process.env.SERVER_URL}/dashboard`, {
     method: "post",
     headers: {
       authorization: localStorage.getItem("media-server-token"),

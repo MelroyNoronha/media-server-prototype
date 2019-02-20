@@ -27,7 +27,7 @@ export default () => {
     deleteWarnModal.style.display = "none";
 
     showLoadingGif();
-    fetch("http://localhost:8081/deleteFile", {
+    fetch(`${process.env.SERVER_URL}/deleteFile`, {
       method: "post",
       headers: {
         authorization: localStorage.getItem("media-server-token"),

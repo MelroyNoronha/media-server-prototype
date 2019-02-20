@@ -7,7 +7,7 @@ window.onload = () => {
     window.location = "./login.html";
   } else {
     showLoadingGif();
-    fetch("http://localhost:8081/dashboard", {
+    fetch(`${process.env.SERVER_URL}/dashboard`, {
       method: "post",
       headers: {
         authorization: localStorage.getItem("media-server-token"),
@@ -41,7 +41,7 @@ fileInput.addEventListener("change", () => {
   formData.append("email", localStorage.getItem("media-server-email"));
 
   showLoadingGif();
-  fetch("http://localhost:8081/upload", {
+  fetch(`${process.env.SERVER_URL}/upload`, {
     method: "post",
     headers: {
       authorization: localStorage.getItem("media-server-token")

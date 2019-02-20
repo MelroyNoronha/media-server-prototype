@@ -43,7 +43,7 @@ submitBtn.addEventListener("click", e => {
     };
 
     showLoadingGif();
-    fetch("http://localhost:8081/register", {
+    fetch(`${process.env.SERVER_URL}/register`, {
       method: "post",
       headers: {
         "Content-Type": "application/json"
