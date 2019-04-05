@@ -23,6 +23,13 @@ window.onload = () => {
         if (data.tokenVerified == true) {
           fetchAndRenderUserFileList();
         }
+      })
+      .catch(err => {
+        console.log(err);
+        hideLoadingGif();
+        showGenericMessageModal(
+          "Could not connect to server :("
+        );
       });
   }
 };
@@ -53,5 +60,12 @@ fileInput.addEventListener("change", () => {
       hideLoadingGif();
       window.location.reload();
       showGenericMessageModal(data.message);
+    })
+    .catch(err => {
+      console.log(err);
+      hideLoadingGif();
+      showGenericMessageModal(
+        "Could not connect to server :("
+      );
     });
 });

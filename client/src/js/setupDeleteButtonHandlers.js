@@ -41,6 +41,11 @@ export default () => {
         hideLoadingGif();
         console.log(data);
         window.location.reload();
+      })
+      .catch(err => {
+        console.error(err);
+        hideLoadingGif();
+        showGenericMessageModal("Could not connect to server :(");
       });
   });
 

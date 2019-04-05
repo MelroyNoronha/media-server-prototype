@@ -34,5 +34,12 @@ submitBtn.addEventListener("click", e => {
         showGenericMessageModal(data.message);
         verifyAndRedirectToDashboard();
       }
+    })
+    .catch(err => {
+      console.log(err);
+      hideLoadingGif();
+      showGenericMessageModal(
+        "Could not connect to server :("
+      );
     });
 });

@@ -1,5 +1,6 @@
 import { showLoadingGif, hideLoadingGif } from "../js/loadingGifController";
 import saveBlobToFile from "./saveBlobToFile";
+import { showGenericMessageModal } from "./modalController";
 
 export default () => {
   const downloadBtns = document.querySelectorAll(".download-btn");
@@ -22,6 +23,11 @@ export default () => {
         .then(blob => {
           hideLoadingGif();
           saveBlobToFile(blob, clickedFileName);
+        })
+        .catch(err => {
+          console.error(err);
+          hideLoadingGif();
+          showGenericMessageModal("Could not connect to server :(");
         });
     });
   });

@@ -39,5 +39,12 @@ export default () => {
         setupDownloadButtonHandlers();
         setupDeleteButtonHandlers();
       }
+    })
+    .catch(err => {
+      console.log(err);
+      hideLoadingGif();
+      showGenericMessageModal(
+        "Could not connect to server :("
+      );
     });
 };

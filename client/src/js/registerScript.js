@@ -61,6 +61,11 @@ submitBtn.addEventListener("click", e => {
           saveCredentialsToStorage(data);
           verifyAndRedirectToDashboard();
         }
+      })
+      .catch(err => {
+        console.err(err);
+        hideLoadingGif();
+        showGenericMessageModal("Could not connect to server :(");
       });
   }
 });

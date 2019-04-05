@@ -18,6 +18,13 @@ const verifyTokenAndRedirectToDashboard = () => {
       if (data.tokenVerified == true) {
         window.location = "./dashboard.html";
       }
+    })
+    .catch(err => {
+      console.log(err);
+      hideLoadingGif();
+      showGenericMessageModal(
+        "Could not connect to server :("
+      );
     });
 };
 
