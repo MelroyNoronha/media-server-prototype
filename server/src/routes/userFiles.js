@@ -22,17 +22,17 @@ router.get("/", (req, res) => {
     } else {
       User.findOne({ email: req.headers.user })
         .then(user => {
-          let userFileNames = [];
-          user.files.forEach(file => userFileNames.push(file.filename));
-          return userFileNames;
+          let userFileIds = [];
+          user.files.forEach(file => userFileIds.push(file.fileId.toString()));
+          return userFileIds;
         })
-        .then(userFileNames => {
+        .then(userFileIds => {
           gfs.files.find().toArray((err, files) => {
             if (err) console.error(err);
 
             if (files) {
               let userFiles = files.filter(file => {
-                if (userFileNames.includes(file.filename)) {
+                if (userFileIds.includes(file._id.toString())) {
                   return file;
                 }
               });
