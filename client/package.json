@@ -1,7 +1,7 @@
 {
   "name": "media-server-front-end",
   "version": "1.0.0",
-  "description": "front-end for media server powered by raspberry pi",
+  "description": "front-end for cloud storage application",
   "scripts": {
     "build": "webpack"
   },
