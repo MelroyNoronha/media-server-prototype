@@ -1,7 +1,6 @@
-# Prototype for a media server application that will be hosted on a Raspberry Pi
+# Cloud Storage Application
 
 ## List of features:
-
-- Upload media files
+- Upload media files 
 - Download media files
 - Share media files
